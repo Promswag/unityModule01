@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
         }
 
         if (cc.isGrounded) {
-            verticalVelocity = 0f;
+            verticalVelocity = -1f;
         }
 
-        if (verticalVelocity == 0f) {
+        if (cc.isGrounded) {
             if (Input.GetKeyDown(KeyCode.Space) && isActive) {
                 verticalVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
             }

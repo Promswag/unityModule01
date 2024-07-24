@@ -1,9 +1,4 @@
-using System.Xml.Serialization;
-using UnityEditor.AssetImporters;
-using UnityEditor.PackageManager.Requests;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ButtonOpenDoor : MonoBehaviour
 {

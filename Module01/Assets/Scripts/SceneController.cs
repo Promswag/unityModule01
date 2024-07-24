@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +7,7 @@ public class SceneController : MonoBehaviour
     Dictionary<string, int> players;
     Dictionary<int, int> matchingLayers;
     static public SceneController instance;
+    private bool gameOver = false;
 
     void Awake()
     {
@@ -27,6 +27,10 @@ public class SceneController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log(SceneManager.GetActiveScene().name + " reset!");
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            LoadNextScene();
         }
     }
 
@@ -52,6 +56,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadNextScene()
     {
+        gameOver = false;
         Scene currentScene = SceneManager.GetActiveScene();
 
         Debug.Log(currentScene.name + " completed!");
@@ -81,5 +86,19 @@ public class SceneController : MonoBehaviour
         }
         if (count == players.Count)
             LoadNextScene();
+    }
+
+    public void GameOver()
+    {
+        if (!gameOver)
+        {
+            gameOver = true;
+            foreach(PlayerController player in FindObjectsOfType<PlayerController>())
+            {
+                player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation + 10;
+                player.enabled = false;
+            }
+            Debug.Log("Game Over!\nPress R to reload.");
+        }
     }
 }

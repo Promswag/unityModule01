@@ -1,7 +1,5 @@
 using System.Collections;
-using UnityEditor.AssetImporters;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -60,13 +58,6 @@ public class PlayerController : MonoBehaviour
 
 		Vector3 move = transform.TransformDirection(new Vector3(horizontalVelocity, rigidBody.velocity.y, 0f));
 		rigidBody.velocity = new Vector3(move.x, rigidBody.velocity.y, 0f);
-		// foreach(Transform child in transform)
-		// {
-		// 	if (child.gameObject.name == name)
-		// 		continue;
-		// 	// child.GetComponent<Rigidbody>().velocity = new Vector3(move.x, rigidBody.velocity.y, 0f);
-		// 	child.position = new Vector3(child.position.x + rigidBody.velocity.x * Time.deltaTime * Time.deltaTime, child.position.y + rigidBody.velocity.y * Time.deltaTime * Time.deltaTime, 0f);
-		// }
 	}
 
 	void SwitchActivePlayer(int key)
@@ -105,21 +96,11 @@ public class PlayerController : MonoBehaviour
 		isJumping = false;
 	}
 
-	// void OnTriggerEnter(Collider collider)
-	// {
-	// 	string layerName = LayerMask.LayerToName(collider.gameObject.layer);
-	// 	if (layerName == "BluePlayer" || layerName == "YellowPlayer" || layerName == "RedPlayer")
-	// 	{
-	// 		collider.transform.SetParent(transform);
-	// 	}
-	// }
-
-	// void OnTriggerExit(Collider collider)
-	// {
-	// 	string layerName = LayerMask.LayerToName(collider.gameObject.layer);
-	// 	if (layerName == "BluePlayer" || layerName == "YellowPlayer" || layerName == "RedPlayer")
-	// 	{
-	// 		collider.transform.SetParent(null);
-	// 	}
-	// }
+	public void Die()
+	{
+		CameraController.instance.Reset();
+		Debug.Log(gameObject.name + " has died!");
+		Destroy(gameObject);
+		SceneController.instance.GameOver();
+	}
 }

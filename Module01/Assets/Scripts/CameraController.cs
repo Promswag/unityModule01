@@ -18,8 +18,13 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(target.position.x, 2.5f, -3.5f);
     }
 
-    public void SetTarget(Transform target)
+    public void SetTarget(Transform newTarget)
     {
-        this.target = target;
+        target = newTarget;
+    }
+
+    public void Reset()
+    {
+        target = transform;
     }
 }

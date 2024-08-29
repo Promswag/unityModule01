@@ -19,6 +19,11 @@ public class SceneController : MonoBehaviour
         matchingLayers[LayerMask.NameToLayer("Blue")] = LayerMask.NameToLayer("BluePlayer");
         matchingLayers[LayerMask.NameToLayer("Yellow")] = LayerMask.NameToLayer("YellowPlayer");
         matchingLayers[LayerMask.NameToLayer("Red")] = LayerMask.NameToLayer("RedPlayer");
+        foreach (int key in matchingLayers.Keys)
+        {
+            Debug.Log(key);
+            Debug.Log(matchingLayers[key]);
+        }
     }
 
     void Update()

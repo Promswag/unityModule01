@@ -7,12 +7,16 @@ public class ButtonOpenDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
+        Debug.Log(collider.name);
+        Debug.Log(name);
         if (gameObject.layer == 0 || SceneController.instance.GetMatchingLayer(gameObject.layer) == collider.gameObject.layer)
         {
             foreach(GameObject door in doors)
             {
                 if (door.gameObject.layer == 0 || SceneController.instance.GetMatchingLayer(door.gameObject.layer) == collider.gameObject.layer)
                     door.SetActive(false);
+                Debug.Log(collider.name);
+                Debug.Log(name);
             }
             if (copyColorOnTrigger)
             {
